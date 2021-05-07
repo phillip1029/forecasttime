@@ -39,7 +39,7 @@ setup(
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
     ],
-    description="Python package to ingrate the workflow of a variety of time series forecast methods",
+    description="Python package to integrate the workflow of a variety of time series forecast methods",
     install_requires=install_requires,
     dependency_links=dependency_links,
     license="MIT license",
