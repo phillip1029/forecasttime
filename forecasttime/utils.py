@@ -6,20 +6,21 @@ import numpy as np
 # time series data standardization
 # time series data decomposition
 
-def series_to_supervised(df, n_in, n_out=1):
-	"""transform a time series dataframe to a supervised data format """
-	cols = list()
-	# input sequence (t-n, ... t-1)
-	for i in range(n_in, 0, -1):
-		cols.append(df.shift(i))
-	# forecast sequence (t, t+1, ... t+n)
-	for i in range(0, n_out):
-		cols.append(df.shift(-i))
-	# put it all together
-	agg = concat(cols, axis=1)
-	# drop rows with NaN values
-	agg.dropna(inplace=True)
-	return agg.values
+def series_to_supervised(data, n_in, n_out=1):
+    """transform a time series dataframe to a supervised data format """
+    df = DataFrame(data)
+    cols = list()
+    # input sequence (t-n, ... t-1)
+    for i in range(n_in, 0, -1):
+        cols.append(df.shift(i))
+    # forecast sequence (t, t+1, ... t+n)
+    for i in range(0, n_out):
+        cols.append(df.shift(-i))
+    # put it all together
+    agg = pd.concat(cols, axis=1)
+    # drop rows with NaN values
+    agg.dropna(inplace=True)
+    return agg.values
 
 
 # split a univariate sequence into samples
@@ -51,16 +52,27 @@ def split_sequence(sequence, n_steps, n_out):
     return np.array(X), np.array(y)
 
 # divide training and testing, default as 70:30
-def divideTrainTest(dataset, test=0.3):
+def train_test_split(dataset, test=0.3):
+    """split the dataframe into train and test set
+    
+    Parameters:
+        dataset: dataframe name
+        test: 
+            if test < 1: the ratio of the data for test
+            if test >= 1: the number of observations for test 
+    Return:
+        two dataframes: one for train and one for test
+               
+    """
     
     if test < 1:
         test_size = int(len(dataset) * test)
         train_size = len(dataset) - test_size
-        train, test = dataset[0:train_size], dataset[train_size:]
+        train, test = dataset[:train_size], dataset[train_size:]
         return train, test
-    if test > 1:
+    if test >= 1:
         test_size = test
         train_size = len(dataset) - test_size
-        train, test = dataset[0:train_size], dataset[train_size:]
+        train, test = dataset[:train_size], dataset[train_size:]
         return train, test
 
