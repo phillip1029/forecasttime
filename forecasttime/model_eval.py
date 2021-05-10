@@ -1,4 +1,5 @@
-from forecasttime.model_dev import model_fit, model_predict
+from forecasttime.utils import * 
+from forecasttime.model_dev import *
 
 # root mean squared error or rmse
 def measure_rmse(actual, predicted):

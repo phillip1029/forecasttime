@@ -1,4 +1,14 @@
-from forecasttime.utils import series_to_supervised, train_test_split
+from forecasttime.utils import *
+
+from keras.models import Sequential
+from keras.layers import Dense
+from keras.layers import Flatten
+from keras.layers.convolutional import Conv1D
+from keras.layers.convolutional import MaxPooling1D
+
+from keras.layers import GRU, Embedding, LSTM
+
+import numpy as np
 
 # fit a model
 def model_fit(name, train, config):
@@ -25,7 +35,7 @@ def model_predict(name, model, history, config):
         # unpack config
         n_input, _, _, _ = config
         # prepare data
-        x_input = array(history[-n_input:]).reshape(1, n_input)
+        x_input = np.array(history[-n_input:]).reshape(1, n_input)
         # forecast
         yhat = model.predict(x_input, verbose=0)
         return yhat[0]
