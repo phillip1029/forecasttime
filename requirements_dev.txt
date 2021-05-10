@@ -29,4 +29,5 @@ pycaret
 yfinance 
 torch 
 plotly>=4.4.1
+delayed
 
