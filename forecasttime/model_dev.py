@@ -15,6 +15,8 @@ import numpy as np
 # fit a model
 def model_fit(name, train, config): 
     
+    from utils import series_to_supervised
+    
     if name == "mlp":
         # unpack config
         n_input, n_nodes, n_epochs, n_batch = config
