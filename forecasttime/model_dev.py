@@ -1,4 +1,6 @@
-from .utils import *
+import os
+
+from utils import *
 
 from keras.models import Sequential
 from keras.layers import Dense
@@ -11,7 +13,8 @@ from keras.layers import GRU, Embedding, LSTM
 import numpy as np
 
 # fit a model
-def model_fit(name, train, config):
+def model_fit(name, train, config): 
+    
     if name == "mlp":
         # unpack config
         n_input, n_nodes, n_epochs, n_batch = config
