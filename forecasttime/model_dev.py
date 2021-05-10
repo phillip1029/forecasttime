@@ -1,6 +1,6 @@
 import os
 
-from utils import *
+from forecasttime.utils import *
 
 from keras.models import Sequential
 from keras.layers import Dense
@@ -15,7 +15,7 @@ import numpy as np
 # fit a model
 def model_fit(name, train, config): 
     
-    from utils import series_to_supervised
+    from forecasttime.utils import series_to_supervised
     
     if name == "mlp":
         # unpack config
