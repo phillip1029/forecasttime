@@ -7,7 +7,17 @@ import numpy as np
 # time series data decomposition
 
 def series_to_supervised(data, n_in, n_out=1):
-    """transform a time series dataframe to a supervised data format """
+    """transform a time series dataframe to a supervised data format 
+    
+    parameters:
+        data: time series data. If the original data is a dataframe, set the data as column values of the time series data
+        n_in: the number of lagged terms to include to pull X
+        n_out: the number of lead (future) terms to include to pull y
+        
+    return:
+        numpy.ndarray: concat of X and y
+        
+    """
     df = pd.DataFrame(data)
     cols = list()
     # input sequence (t-n, ... t-1)

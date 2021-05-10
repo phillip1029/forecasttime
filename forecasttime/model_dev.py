@@ -1,4 +1,4 @@
-from forecasttime.utils import *
+from .utils import *
 
 from keras.models import Sequential
 from keras.layers import Dense
