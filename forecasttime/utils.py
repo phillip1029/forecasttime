@@ -8,7 +8,7 @@ import numpy as np
 
 def series_to_supervised(data, n_in, n_out=1):
     """transform a time series dataframe to a supervised data format """
-    df = DataFrame(data)
+    df = pd.DataFrame(data)
     cols = list()
     # input sequence (t-n, ... t-1)
     for i in range(n_in, 0, -1):
