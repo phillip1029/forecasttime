@@ -13,8 +13,17 @@ from keras.layers import GRU, Embedding, LSTM, TimeDistributed, ConvLSTM2D
 import numpy as np
 
 
-# difference dataset
 def difference(data, interval):
+    """ difference dataset
+    
+    parameters:
+        data: dataset to be differenced
+        interval: the interval between the two elements to be differenced. 
+        
+    return: 
+        dataset: with the length = len(data) - interval
+        
+    """
     return [data[i] - data[i - interval] for i in range(interval, len(data))]
 
 # fit a model
@@ -186,3 +195,5 @@ def model_predict(name, model, history, config):
         # forecast
         yhat = model.predict(x_input, verbose=0)
         return yhat[0]
+    
+    
